@@ -16,6 +16,8 @@ const fileRouter = require("./routes/file.routes");
 app.use('/file', fileRouter);
 const formRouter = require("./routes/form.routes");
 app.use('/form', formRouter);
+const userRouter = require("./routes/user.routes");
+app.use('/user', userRouter);
 
 
 
