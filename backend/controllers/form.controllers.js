@@ -2,7 +2,7 @@ const Form = require("../models/formModel");
 
 exports.getAllForms = async (req, res) => {
 
-    const forms = await Form.find();
+    const forms = await Form.find().populate("class_id").populate("user_that_requested", "-password");
     res.json(forms);
     
 }
