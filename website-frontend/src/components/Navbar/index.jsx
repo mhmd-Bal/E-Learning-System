@@ -1,4 +1,3 @@
-import "./styles.css";
 import { AppBar, Typography, Button, Box, Toolbar, Stack, CssBaseline } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
