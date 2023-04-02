@@ -1,34 +1,44 @@
 import {Box, Container, Typography, Checkbox ,CssBaseline, TextField, FormControlLabel, Button, Link, Stack} from '@mui/material';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginBlock() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordError, setPasswordError] = useState('');
 
     const handleRegisterNavigation = () => {
         navigate("/register");
     }
 
-    const handleSubmit = (e) => {
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:3000/auth/login', {
-          email: email,
-          password: password
+
+        axios.post('http://127.0.0.1:8000/auth/login', {
+            email: email,
+            password: password
         }, {
           headers: {
             'content-type': 'application/json',
-            'Accept': 'application/json',
+            'Accept': 'application/json'
           }
         })
           .then(response => {
             console.log(response);
-            localStorage.setItem('token', response.data.authorisation.token);
-            
+            localStorage.setItem('token', response.data.token);
+            navigate('/');
           })
           .catch(error => {
-            alert("Incorrect Crendetials!");
+            console.log(error);
           });
     }
 
@@ -46,6 +56,7 @@ function LoginBlock() {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        onChange={handleEmailChange}
                         autoFocus
                     />
                     <TextField
@@ -57,6 +68,7 @@ function LoginBlock() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handlePasswordChange}
                     />
                     <Stack direction="column" spacing={3}>
                         <FormControlLabel

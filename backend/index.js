@@ -2,11 +2,34 @@ const cluster = require("cluster");
 const OS = require("os")
 const express = require("express");
 const app = express();
+const cors = require("cors");
+const bodyParser = require('body-parser')
 require("dotenv").config();
 app.use(express.json());
 
+app.use(express.json());
+app.use(express.urlencoded());
+
+
+// app.use(cors({
+//     origin: '*'
+// }));
+// app.use(cors({
+//     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+// }));
+
+app.use(cors());
+
+app.listen(process.env.PORT, (err) => {
+    if (err) console.error(err)
+    console.log(`server is running on port `, process.env.PORT);
+    require("./configs/db.config");
+});
+
+
 
 const { authMiddleware } = require("./middlewares/auth.middleware");
+
 
 const authRouter = require("./routes/auth.routes");
 app.use('/auth', authRouter);
@@ -35,9 +58,3 @@ app.use('/user', authMiddleware, userRouter);
 //     require("./configs/db.config")
 //   });
 // }
-
-app.listen(process.env.PORT, (err) => {
-    if (err) console.error(err)
-    console.log(`server is running on port `, process.env.PORT);
-    require("./configs/db.config");
-});
