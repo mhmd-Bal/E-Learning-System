@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const router = Router();
 
-const { getAllClasses } = require("../controllers/class.controllers")
+const { getAllClasses, addClass } = require("../controllers/class.controllers")
 
 router.get("/", getAllClasses);
+router.post("/add", addClass);
 
 module.exports = router;
