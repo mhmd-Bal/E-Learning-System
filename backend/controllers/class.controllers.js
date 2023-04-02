@@ -24,3 +24,10 @@ exports.joinClass = async (req, res) => {
 
     res.json(student_that_joined);
 }
+
+exports.getAllEnrolledStudents = async (req, res) => {
+    
+    const students_that_joined = await UserHasClass.find().populate("class_id").populate("class_student", "-password");
+
+    res.json(students_that_joined);
+}
