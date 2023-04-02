@@ -13,6 +13,10 @@ function Navbar() {
         navigate("/");
     }
 
+    const handleRegisterNavigation = () => {
+        navigate("/register");
+    }
+
     return (
         <>
             <AppBar position="relative">
@@ -21,7 +25,7 @@ function Navbar() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} onClick={handleHomeNavigation}>Logo</Typography>
                     <Stack direction="row" spacing={2}>
                         <Button color="inherit" variant="outlined" onClick={handleLoginNavigation}>Login</Button>
-                        <Button color="inherit" variant="outlined">Signup</Button>
+                        <Button color="inherit" variant="outlined" onClick={handleRegisterNavigation}>Signup</Button>
                     </Stack>
                 </Toolbar>
             </AppBar>
