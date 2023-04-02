@@ -10,13 +10,7 @@ exports.getAllBlogs = async (req, res) => {
 exports.getBlogById = async (req, res) => {
   const { id } = req.params;
 
-  const blog = await Blog.findById(id).populate("author", "-password").populate("commnets.author", "-password")
-  // .populate({
-  //   path: "commnets",
-  //   populate: {
-  //     path: "author"
-  //   }
-  // });
+  const blog = await Blog.findById(id).populate("author", "-password").populate("commnets.author", "-password");
 
   res.json(blog);
 }
