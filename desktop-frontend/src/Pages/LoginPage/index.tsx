@@ -3,7 +3,8 @@ import "./styles.css";
 
 function LoginPage() {
   return (
-    <Container sx={{display: 'flex', justifyContent: 'center', paddingY: 8}}>
+    <div className="Whole-container">
+        <Container sx={{display: 'flex', justifyContent: 'center', paddingY: 8}}>
             <CssBaseline />
             <Box sx={{maxWidth: 415, mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Typography variant="h3">Sign in</Typography>
@@ -38,6 +39,7 @@ function LoginPage() {
                 </Box>
             </Box>
         </Container>
+    </div>
   );
 }
 
