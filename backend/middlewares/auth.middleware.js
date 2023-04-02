@@ -21,9 +21,3 @@ exports.authMiddleware = async (req, res, next) => {
   }
 
 }
-
-// {
-//   headers: {
-//     "authorization": "Bearer gmnkengkejngkejngejkrngkjenger"
-//   }
-// }
