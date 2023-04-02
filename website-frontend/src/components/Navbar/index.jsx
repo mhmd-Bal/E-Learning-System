@@ -1,5 +1,5 @@
 import "./styles.css";
-import { AppBar, Typography, Button, Box, Toolbar, Stack } from '@mui/material';
+import { AppBar, Typography, Button, Box, Toolbar, Stack, CssBaseline } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -16,6 +16,7 @@ function Navbar() {
     return (
         <>
             <AppBar position="relative">
+                <CssBaseline />
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} onClick={handleHomeNavigation}>Logo</Typography>
                     <Stack direction="row" spacing={2}>
