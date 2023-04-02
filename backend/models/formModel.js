@@ -10,7 +10,7 @@ const formSchema = new mongoose.Schema({
         required: true,
         default: "pending",
     },
-    class: {
+    class_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class",
         required: true,
