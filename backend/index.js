@@ -5,18 +5,15 @@ const app = express();
 require("dotenv").config();
 app.use(express.json());
 
+
+// const { authMiddleware } = require("./middlewares/auth.middleware");
+
 const authRouter = require("./routes/auth.routes");
 app.use('/auth', authRouter);
 const classRouter = require("./routes/class.routes");
 app.use('/class', classRouter);
-
-// const blogRouter = require("./routes/blog.routes");
-// const { authMiddleware } = require("./middlewares/auth.middleware");
-// app.use('/blog', authMiddleware, blogRouter)
-
-
-
-
+const fileRouter = require("./routes/file.routes");
+app.use('/file', fileRouter);
 
 
 
