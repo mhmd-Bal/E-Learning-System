@@ -1,5 +1,5 @@
 import {Card, CardActions, CardContent, Typography, Button,TextField, Tooltip, Dialog, DialogTitle, DialogContentText, DialogContent, DialogActions} from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 
 
@@ -9,6 +9,28 @@ function AppClass(props) {
     const [value, setValue] = useState('');
 
     const token = localStorage.getItem("token");
+
+    useEffect(() => {
+        axios.post('http://127.0.0.1:8000/class/check_if_enrolled', {
+            class_id: props.class_id
+        }, {
+          headers: {
+            'content-type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'bearer ' + token
+          }
+        })
+        .then(response => {
+            console.log(response);
+            if(response.data.length >= 1){
+                setEnrolled(true);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, [])
+    
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -20,10 +42,6 @@ function AppClass(props) {
 
     const handleChange = (e) => {
         setValue(e.target.value);
-    }
-    
-    const checkIfEnrolled = () => {
-
     }
 
     const handleEnrollInCourse = () => {
