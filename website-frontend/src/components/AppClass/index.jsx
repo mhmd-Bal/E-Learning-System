@@ -66,23 +66,26 @@ function AppClass(props) {
 
     const handleRequestForm = () => {
         if(enrolled){
-            axios.post('http://127.0.0.1:8000/form/request', {
-                class_id: props.class_id,
-                form_content: value
-            }, {
-              headers: {
-                'content-type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'bearer ' + token
-              }
-            })
-            .then(response => {
+            if(value != ''){
+                axios.post('http://127.0.0.1:8000/form/request', {
+                    class_id: props.class_id,
+                    form_content: value
+                }, {
+                  headers: {
+                    'content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + token
+                  }
+                })
+                .then(response => {
+                    setOpen(false);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }else{
                 setOpen(false);
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            }
         }
     }
 
