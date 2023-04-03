@@ -34,8 +34,8 @@ exports.login = async (req, res) => {
   if (!isMatched) return res.status(404).json({ message: "Wrong Password" });
 
   const token = jwt.sign({ id: user._id, email: user.email }, process.env.SECRET_KEY);
-
-  res.json({ token })
+  const role = user.role;
+  res.json({ token, role})
 
 }
 
