@@ -2,14 +2,21 @@ import {AppBar, CssBaseline, Toolbar, Typography, Stack, Button, IconButton, Dra
 import MenuIcon from '@mui/icons-material/Menu';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminPage() {
   const [openedDrawer, setOpenedDrawer] = useState(false);
   
+  const navigate = useNavigate();
+  const handleLoginNavigate = () => {
+    navigate("/");
+  }
+
   const handleDrawerToggle = () => {
     setOpenedDrawer(!openedDrawer);
   }
+
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -48,7 +55,7 @@ function AdminPage() {
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>Admin Panel</Typography>
             <Stack direction="row" spacing={2}>
-                <Button color="inherit" >Logout</Button>
+                <Button color="inherit" onClick={handleLoginNavigate}>Logout</Button>
             </Stack>
           </Toolbar>
         </AppBar>
