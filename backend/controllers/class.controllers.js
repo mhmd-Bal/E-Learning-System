@@ -31,3 +31,12 @@ exports.getAllEnrolledStudents = async (req, res) => {
 
     res.json(students_that_joined);
 }
+
+exports.checkIfEnrolled = async (req, res) => {
+    const { class_id } = req.body;
+    const class_student = req.user.id;
+
+    const student_enrolled = await UserHasClass.find({ class_id, class_student});
+
+    res.json(student_enrolled);
+}
